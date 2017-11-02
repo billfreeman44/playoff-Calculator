@@ -1,0 +1,92 @@
+<html>
+<head>
+<title> eSports playoff calculator
+</title>
+</head>
+<body>
+<h1> eSports playoff calculator </h1>
+
+Number of teams: <input type="text" id="numTeams" value="174" size="10" style="width: 50px"><br>
+Number of weeks: <input type="text" id="numWeeks" value="16" size="10" style="width: 50px"><br>
+Number of teams in playoffs: <input type="text" id="numPlayoffs" value="64" size="10" style="width: 50px"><br>
+<br>
+<br>
+
+<input type="submit" onclick="main();">
+
+<br>
+<br>
+
+
+<span id='outBox'></span>
+<br>
+</body>
+
+
+<script>
+
+
+
+function main() {
+
+var numTeams = document.getElementById('numTeams').value;
+var numWeeks = document.getElementById('numWeeks').value;
+var numPlayoffs = document.getElementById('numPlayoffs').value;
+var i=0;
+var j=0;
+var outStr='';
+var temp=0;
+
+
+var winArr = new Array(numTeams);
+for (i=0; i< numTeams; i++) {winArr[i]=0;}
+
+document.getElementById("outBox").innerHTML =winArr;
+for (j=0; j < numWeeks;j++){
+
+	for (i=0; i < numTeams; i=i+2) {
+		if (Math.random() < 0.5) {
+			winArr[i]++;
+		} else {
+			winArr[i+1]++;
+		}
+		
+	}
+	winArr.sort(function(a, b){return b-a});
+}
+
+outStr='Teams with '+(winArr[numPlayoffs-1]+1)+' wins are gauranteed to make playoffs <br><br>';
+outStr=outStr+'Teams with '+(numWeeks - winArr[numPlayoffs-1] + 1 )+' losses will not make it in<br><br>';
+var qualifiedIndex=0
+for (i=0; i < numTeams; i++){
+	if (winArr[i] >= winArr[numPlayoffs-1]){
+	qualifiedIndex=i;
+	}
+}
+qualifiedIndex++; //fix off by 1 error.
+
+outStr=outStr+(qualifiedIndex - numPlayoffs)+' teams will not make it despite having  '+winArr[numPlayoffs-1]+' wins <br><br>';
+
+
+temp=1
+for (i=1; i < numTeams; i++){
+	if (winArr[i] != winArr[i-1]){
+	outStr=outStr+temp+' teams had '+(winArr[i-1])+' wins <br>';
+	temp=0;
+	}
+	temp++;
+}
+outStr=outStr+temp+' teams had '+(winArr[numTeams-1])+' wins <br>';
+
+document.getElementById("outBox").innerHTML = outStr;
+
+}
+
+//for (i = 0; i < cars.length; i++) { 
+//    text += cars[i] + "<br>";
+//}
+
+//points.sort(function(a, b){return a - b});
+</script>
+
+</html>
