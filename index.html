@@ -25,7 +25,10 @@ Number of teams in playoffs: <input type="text" id="numPlayoffs" value="64" size
 
 <script>
 
-
+function isEven(n) {
+  n = Number(n);
+  return n === 0 || !!(n && !(n%2));
+}
 
 function main() {
 
@@ -36,6 +39,11 @@ var i=0;
 var j=0;
 var outStr='';
 var temp=0;
+
+if (isEven(numTeams) == 0) {
+	numTeams++;
+	document.getElementById('numTeams').value = numTeams;
+}
 
 
 var winArr = new Array(numTeams);
