@@ -55,8 +55,8 @@ for (j=0; j < numWeeks;j++){
 	winArr.sort(function(a, b){return b-a});
 }
 
-outStr='Teams with '+(winArr[numPlayoffs-1]+1)+' wins are gauranteed to make playoffs <br><br>';
-outStr=outStr+'Teams with '+(numWeeks - winArr[numPlayoffs-1] + 1 )+' losses will not make it in<br><br>';
+outStr='Teams with '+(winArr[numPlayoffs-1]+1)+' wins are gauranteed to make playoffs. <br><br>';
+outStr=outStr+'Teams with '+(numWeeks - winArr[numPlayoffs-1] + 1 )+' losses will not make playoffs.<br><br>';
 var qualifiedIndex=0
 for (i=0; i < numTeams; i++){
 	if (winArr[i] >= winArr[numPlayoffs-1]){
@@ -65,7 +65,7 @@ for (i=0; i < numTeams; i++){
 }
 qualifiedIndex++; //fix off by 1 error.
 
-outStr=outStr+(qualifiedIndex - numPlayoffs)+' teams will not make it despite having  '+winArr[numPlayoffs-1]+' wins <br><br>';
+outStr=outStr+(qualifiedIndex - numPlayoffs)+' teams will not make playoffs despite having  '+winArr[numPlayoffs-1]+' wins. <br><br>';
 
 
 temp=1
