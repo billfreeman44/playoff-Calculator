@@ -79,12 +79,12 @@ outStr=outStr+(qualifiedIndex - numPlayoffs)+' teams will not make playoffs desp
 temp=1
 for (i=1; i < numTeams; i++){
 	if (winArr[i] != winArr[i-1]){
-	outStr=outStr+temp+' teams had '+(winArr[i-1])+' wins <br>';
+	outStr=outStr+temp+' teams had '+(winArr[i-1])+' wins ('+winArr[i-1]+'-'+(numWeeks-winArr[i-1])+')<br>';
 	temp=0;
 	}
 	temp++;
 }
-outStr=outStr+temp+' teams had '+(winArr[numTeams-1])+' wins <br>';
+outStr=outStr+temp+' teams had '+(winArr[numTeams-1])+' wins ('+winArr[numTeams-1]+'-'+(numWeeks-winArr[numTeams-1])+')<br>';
 
 document.getElementById("outBox").innerHTML = outStr;
 
